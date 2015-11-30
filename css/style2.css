@@ -1,0 +1,40 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4F4F4F;
+}
+
+.white-on-black {
+    background: #000000;
+}
+
+.white-on-black h1 {
+    color: #ffffff;
+    font-weight: 100;
+    font-size: 28px;
+    margin: 15px;
+}
+
+.navbar-brand img {
+    width: auto;
+    height: 100%;
+}
+
+article img {
+    display: inline-flex;
+
+}
+
+footer {
+    min-height: 30px;
+    color: #777;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.navbar {
+    border-radius: 0;
+}
