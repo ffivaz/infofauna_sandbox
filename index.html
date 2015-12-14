@@ -15,10 +15,10 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.10.1/ol.min.css" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,700,700italic,400italic,100italic'
           rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
     <link rel="stylesheet" href="css/style2.css" type="text/css">
 
     <link rel="alternate" href="http://lepus.unine.ch/carto/index.php?lang=fr" hreflang="fr"/>
@@ -28,63 +28,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <script src="js/functions.js"></script>
 
     <title>InfoFauna | Distribution des espèces</title>
 
     <script>
-        $(document).ready(function () {
 
-            $(".fancybox").fancybox();
-
-            $('#rollBox').hide();
-            $("#minimizebutton").hide();
-
-            $("#minimizebutton").click(function () {
-                $("#rollBox").slideToggle("fast", function () {
-                    $("#minimizebutton").hide();
-                    $("#boxtext").show();
-                });
-            });
-
-            $('#footerBox').hide();
-            $('#footerButton').show();
-            $('#footerMinButton').hide();
-            $("#footerButton").click(function () {
-                $("#footerBox").slideToggle("fast", function () {
-                    $("#footerButton").hide();
-                    $("#footerTitle").hide();
-                    $("#footerMinButton").show();
-                });
-            });
-            $("#footerMinButton").click(function () {
-                $("#footerBox").slideToggle("fast", function () {
-                    $("#footerButton").show();
-                    $("#footerTitle").show();
-                    $("#footerMinButton").hide();
-                });
-            });
-        });
-
-        function showResult(str) {
-            if (str.length < 3) {
-                document.getElementById("livesearch").innerHTML = "";
-                document.getElementById("livesearch").style.border = "0px";
-                return;
-            }
-            if (window.XMLHttpRequest) {
-                xhr = new XMLHttpRequest();
-            }
-            else {
-                xhr = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-                    document.getElementById("livesearch").innerHTML = xhr.responseText;
-                }
-            }
-            xhr.open("GET", "livesearch2.php?q=" + str, true);
-            xhr.send();
-        }
     </script>
 </head>
 <body>
@@ -111,7 +61,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Accueil <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">API</a></li>
+                <li><a href="api.html">API</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Informations<span class="caret"></span></a>
@@ -124,7 +74,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Langue <span class="caret"></span></a>
+                       aria-expanded="false">FR <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">FR</a></li>
                         <li><a href="#">DE</a></li>
@@ -159,6 +109,7 @@
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">
                 <input type="text" class="form-control" name="x" placeholder="Termes de recherche...">
+                <select class="js-species-data-array"></select>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
